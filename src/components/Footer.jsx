@@ -10,7 +10,7 @@ const Footer = () => {
             &copy; Brandon Lawson 2024
         </div>
         <div className='pb-2'>
-        <FontAwesomeIcon icon={faPhone} />: <Link to='tel: 7035983362'>703-595-3362</Link>
+        <FontAwesomeIcon icon={faPhone} />: <Link to='tel: 7035983362'>703-598-3362</Link>
         </div>
         <div><FontAwesomeIcon icon={faEnvelope} />: <Link to='mailto: blaws006@gmail.com'>blaws006@gmail.com</Link></div>
     </footer>
