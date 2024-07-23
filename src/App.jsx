@@ -13,7 +13,7 @@ import { Route, Routes } from "react-router-dom"
 
 const App = () => {
   return (
-    <>
+    <div className="flex flex-col min-h-screen justify-between">
       <Header />
       <Routes>
         <Route path='/' element={<IntroPage />} />
@@ -21,7 +21,8 @@ const App = () => {
         <Route path='/contact' element={<ContactPage />} />
       </Routes>
       <Footer />
-    </>
+      </div>
+      
   )
 }
 

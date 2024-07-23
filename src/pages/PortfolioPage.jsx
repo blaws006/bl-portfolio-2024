@@ -2,7 +2,10 @@
 
 const PortfolioPage = () => {
   return (
-    <div>PortfolioPage</div>
+    <main className="flex-grow">
+      <div>PortfolioPage</div>
+    </main>
+    
   )
 }
 

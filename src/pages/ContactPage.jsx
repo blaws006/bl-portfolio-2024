@@ -2,7 +2,10 @@ import ContactForm from "../components/ContactForm"
 
 const ContactPage = () => {
   return (
-    <ContactForm />
+    <main className="flex-grow ">
+      <ContactForm />
+    </main>
+    
   )
 }
 
