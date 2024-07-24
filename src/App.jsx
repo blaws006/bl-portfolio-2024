@@ -1,29 +1,27 @@
 /* Components */
-import Header from "./components/Header"
-import Footer from "./components/Footer";
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 /* Pages */
-import IntroPage from "./pages/IntroPage"
+import IntroPage from './pages/IntroPage';
 import PortfolioPage from './pages/PortfolioPage';
-import ContactPage from "./pages/ContactPage";
+import ContactPage from './pages/ContactPage';
 
 /* Libraries */
-import { Route, Routes } from "react-router-dom"
-
+import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
-  return (
-    <div className="flex flex-col min-h-screen justify-between">
-      <Header />
-      <Routes>
-        <Route path='/' element={<IntroPage />} />
-        <Route path='/portfolio' element={<PortfolioPage />} />
-        <Route path='/contact' element={<ContactPage />} />
-      </Routes>
-      <Footer />
-      </div>
-      
-  )
-}
+	return (
+		<div className='flex flex-col min-h-screen justify-between'>
+			<Header />
+			<Routes>
+				<Route path='bl-portfolio-2024/' element={<IntroPage />} />
+				<Route path='/portfolio' element={<PortfolioPage />} />
+				<Route path='/contact' element={<ContactPage />} />
+			</Routes>
+			<Footer />
+		</div>
+	);
+};
 
-export default App
+export default App;
