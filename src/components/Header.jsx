@@ -11,7 +11,7 @@ const Header = () => {
 			<div className='text-white font-bold py-2'>Brandon Lawson: Developer</div>
 			<nav className='columns-3 py-2'>
 				<div className='text-white'>
-					<Link to='//bl-portfolio-2024/'>About</Link>
+					<Link to='/bl-portfolio-2024/'>About</Link>
 				</div>
 				<div className='text-white'>
 					<Link to='/bl-portfolio-2024/portfolio'>Portfolio</Link>
