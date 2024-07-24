@@ -16,8 +16,8 @@ const App = () => {
 			<Header />
 			<Routes>
 				<Route path='/bl-portfolio-2024/' element={<IntroPage />} />
-				<Route path='/portfolio' element={<PortfolioPage />} />
-				<Route path='/contact' element={<ContactPage />} />
+				<Route path='/bl-portfolio-2024/portfolio' element={<PortfolioPage />} />
+				<Route path='/bl-portfolio-2024/contact' element={<ContactPage />} />
 			</Routes>
 			<Footer />
 		</div>
