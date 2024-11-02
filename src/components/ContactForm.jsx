@@ -1,29 +1,6 @@
 import { Formik, Form, Field } from 'formik';
 
 const ContactForm = () => {
-	// const onSubmit = async () => {
-	// 	const formData = new FormData();
-
-	// 	formData.append('access_key', '129a9ac4-b456-4a35-b676-326410d1de1');
-	// 	console.log(formData);
-	// 	const object = Object.fromEntries(formData);
-
-	// 	const json = JSON.stringify(object);
-
-	// 	const res = await fetch('https://api.web3forms.com/submit', {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 			Accept: 'application/json'
-	// 		},
-	// 		body: json
-	// 	}).then((res) => res.json());
-
-	// 	if (res.success) {
-	// 		console.log('Success', res);
-	// 	}
-	// };
-
 	return (
 		<Formik
 			initialValues={{
@@ -31,7 +8,7 @@ const ContactForm = () => {
 				subject: '',
 				message: ''
 			}}
-			onSubmit={async (values) => {
+			onSubmit={async (values, { resetForm }) => {
 				const formData = new FormData();
 				formData.append('access_key', '129a9ac4-b456-4a35-b676-326410d1de11');
 				formData.append('email', values.email);
@@ -40,8 +17,6 @@ const ContactForm = () => {
 
 				const object = Object.fromEntries(formData);
 				const json = JSON.stringify(object);
-
-				console.log(json);
 
 				const res = await fetch('https://api.web3forms.com/submit', {
 					method: 'POST',
@@ -54,15 +29,10 @@ const ContactForm = () => {
 
 				if (res.success) {
 					console.log('Success', res);
+					resetForm();
 				}
 			}}>
 			<Form className='flex flex-col align-middle content-center mx-auto sm:container my-32'>
-				<Field
-					type='hidden'
-					name='access_key'
-					value='129a9ac4-b456-4a35-b676-326410d1de11
-'
-				/>
 				<label htmlFor='email'>Email Address</label> <br />
 				<Field
 					name='email'
