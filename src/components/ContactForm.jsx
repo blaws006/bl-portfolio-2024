@@ -1,4 +1,5 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { validateContactForm } from '../utils/validateContactForm';
 
 const ContactForm = () => {
 	return (
@@ -31,27 +32,40 @@ const ContactForm = () => {
 					console.log('Success', res);
 					resetForm();
 				}
-			}}>
+			}}
+			validate={validateContactForm}>
 			<Form className='flex flex-col align-middle content-center mx-auto sm:container my-32'>
 				<label htmlFor='email'>Email Address</label> <br />
 				<Field
 					name='email'
-					className='border-2 block mb-8'
+					className='border-2 block'
 				/>
-				<label htmlFor='subject'>Subject Line</label> <br />
+				<ErrorMessage name='email'>{(msg) => <p className='text-red-700'>{msg}</p>}</ErrorMessage>
+				<label
+					htmlFor='subject'
+					className='mt-6'>
+					Subject Line
+				</label>{' '}
+				<br />
 				<Field
 					name='subject'
-					className='border-2 block mb-8'
+					className='border-2 block'
 				/>
-				<label htmlFor='message'>Message</label>
+				<ErrorMessage name='subject'>{(msg) => <p className='text-red-700'>{msg}</p>}</ErrorMessage>
+				<label
+					htmlFor='message'
+					className='mt-6'>
+					Message
+				</label>
 				<br />
 				<Field
 					name='message'
 					as='textarea'
-					className='border-2 block mb-8 h-auto text-lg resize-y'></Field>
+					className='border-2 block h-auto text-lg resize-y'></Field>
+				<ErrorMessage name='message'>{(msg) => <p className='text-red-700'>{msg}</p>}</ErrorMessage>
 				<button
 					type='submit'
-					className='bg-black hover:bg-white text-white hover:text-black hover: border-black hover:border-x-2 hover:border-y-2 p-4 sm:w-2/6 lg:w-2/12 self-center hover:scale-125 ease-out duration-300'>
+					className='bg-black hover:bg-white text-white hover:text-black hover: border-black hover:border-x-2 hover:border-y-2 p-4 sm:w-2/6 lg:w-2/12 self-center hover:scale-125 ease-out duration-300 mt-8'>
 					Submit
 				</button>
 			</Form>
