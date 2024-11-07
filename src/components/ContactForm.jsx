@@ -1,7 +1,38 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { validateContactForm } from '../utils/validateContactForm';
+import { useState } from 'react';
+import Loading from './Loading';
 
 const ContactForm = () => {
+	const [loading, setLoading] = useState(false);
+	const handleSubmit = async (values, { resetForm }) => {
+		setLoading(true);
+
+		const formData = new FormData();
+		formData.append('access_key', '129a9ac4-b456-4a35-b676-326410d1de11');
+		formData.append('email', values.email);
+		formData.append('subject', values.subject);
+		formData.append('message', values.message);
+
+		const object = Object.fromEntries(formData);
+		const json = JSON.stringify(object);
+		console.log(loading);
+		const res = await fetch('https://api.web3forms.com/submit', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json'
+			},
+			body: json
+		}).then((res) => res.json());
+
+		if (res.success) {
+			console.log('Success', res);
+			setLoading(false);
+			resetForm();
+		}
+	};
+
 	return (
 		<Formik
 			initialValues={{
@@ -9,32 +40,10 @@ const ContactForm = () => {
 				subject: '',
 				message: ''
 			}}
-			onSubmit={async (values, { resetForm }) => {
-				const formData = new FormData();
-				formData.append('access_key', '129a9ac4-b456-4a35-b676-326410d1de11');
-				formData.append('email', values.email);
-				formData.append('subject', values.subject);
-				formData.append('message', values.message);
-
-				const object = Object.fromEntries(formData);
-				const json = JSON.stringify(object);
-
-				const res = await fetch('https://api.web3forms.com/submit', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						Accept: 'application/json'
-					},
-					body: json
-				}).then((res) => res.json());
-
-				if (res.success) {
-					console.log('Success', res);
-					resetForm();
-				}
-			}}
+			onSubmit={handleSubmit}
 			validate={validateContactForm}>
 			<Form className='flex flex-col align-middle content-center mx-auto sm:container my-32'>
+				{loading && <Loading />}
 				<label htmlFor='email'>Email Address</label> <br />
 				<Field
 					name='email'
