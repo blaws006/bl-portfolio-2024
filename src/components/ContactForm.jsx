@@ -7,7 +7,7 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 
 const ContactForm = () => {
 	const [loading, setLoading] = useState(false);
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
 	const handleSubmit = async (values, { resetForm }) => {
 		setLoading(true);
 
@@ -20,21 +20,25 @@ const ContactForm = () => {
 		const object = Object.fromEntries(formData);
 		const json = JSON.stringify(object);
 
-		const res = await fetch('https://api.web3forms.com/submit', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json'
-			},
-			body: json
-		}).then((res) => res.json());
+		try {
+			const res = await fetch('https://api.web3forms.com/submit', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json'
+				},
+				body: json
+			});
+			const data = await res.json();
+			if (data) {
+				setOpen(true);
+				console.log('Success', data);
+				setLoading(false);
 
-		if (res.success) {
-			setOpen(true);
-			console.log('Success', res);
-			setLoading(false);
-
-			resetForm();
+				resetForm();
+			}
+		} catch (error) {
+			console.error('Error', error);
 		}
 	};
 
